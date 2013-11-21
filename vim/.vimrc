@@ -2,12 +2,23 @@ color desert
 syntax enable
 set cindent
 set nu
+set showcmd
+set pastetoggle=<F6>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indent settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set showcmd
-set pastetoggle=<F6>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Folding settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set foldmethod=indent   "fold based on indent
+set foldnestmax=2       "deepest fold is 2 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
 
 " Clear spaces on the end of each line
 "autocmd FileType c,cpp,java,php,perl,python,ruby,sh autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'
@@ -18,7 +29,9 @@ map <F7> :set nu!<BAR>set nu?<CR>
 map <F8> :set hls!<BAR>set hls?<CR>
 nnoremap <CR> i<CR><Esc>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status Bar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
 set statusline=%4*%<\ %1*[%F]
 set statusline+=%4*\ %5*[%{&encoding}, " encoding
