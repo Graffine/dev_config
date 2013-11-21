@@ -1,0 +1,45 @@
+screen -t AP 0
+screen -t Helper0 1 ssh root@172.16.18.136
+screen -t Master0 2 ssh root@172.16.18.134
+screen -t Portal 3 ssh root@172.16.18.128
+screen -t Installation 4  ssh root@172.16.18.139
+
+# Look and feel
+caption always "%{= 11}%{+b w}Screen: %n | %h %=%t %c"
+hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
+  
+# Our warning of activity
+activity "Activity in %t(%n)"
+
+# Makes "C-b 0" select window 10, "C-b 1" window 11, etc.
+bind -c sw 0 select 10
+bind -c sw 1 select 11
+bind -c sw 2 select 12
+bind -c sw 3 select 13
+bind -c sw 4 select 14
+bind -c sw 5 select 15
+bind -c sw 6 select 16
+bind -c sw 7 select 17
+bind -c sw 8 select 18
+bind -c sw 9 select 19
+bindkey "^B" command -c sw
+
+# Makes "C-x 1" login to remote Installation server, "C-x 1" login to remote AAL server, etc.
+bind -c remote 0 screen -t Build ssh root@172.16.16.128
+bind -c remote 1 screen -t Installation ssh root@172.16.18.139
+bind -c remote 4 screen -t Master0 ssh root@172.16.18.134
+bind -c remote 5 screen -t Master1 ssh root@172.16.18.135
+bind -c remote 6 screen -t Helper0 ssh root@172.16.18.136
+bind -c remote 7 screen -t Helper1 ssh root@172.16.18.137
+bind -c remote 8 screen -t Portal ssh root@172.16.18.128
+bind -c remote 9 screen -t AAL ssh root@172.16.18.129
+#bind -c remote 8 screen -t Filer0 ssh root@172.16.16.138
+#bind -c remote 9 screen -t Filer1 ssh root@172.16.16.139
+bindkey "^X" command -c remote
+
+# Left Right meta key mods
+#ALT-,. and ALT-<>
+bindkey "^[<" eval number !echo $WINDOW-1|bc
+bindkey "^[>" eval number !echo $WINDOW+1|bc
+bindkey "^[," prev
+bindkey "^[." next

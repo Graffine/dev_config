@@ -1,0 +1,15 @@
+[user]
+	name = Graffine Wu
+	email = graffine@gmail.com
+[color]
+    ui = true
+    branch = auto
+    diff = auto
+    status = auto
+[alias]
+    br = branch
+    ci = commit
+    co = checkout
+    lg = log --graph --abbrev-commit --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(bold cyan)%ai %C(bold green)(%ar) %C(bold blue)- %an %C(reset)'
+    ht = log --graph --abbrev-commit --all --pretty=format:'%C(red)%h%C(reset) -%C(bold yellow)%d %C(bold cyan)%ai %C(bold green)(%ar)%C(reset)%n''          %s %C(bold blue)- %an%C(reset)'
+    st = status
