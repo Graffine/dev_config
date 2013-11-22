@@ -61,23 +61,22 @@ let Tlist_Inc_Winwidth=0
 let Tlist_Show_One_File=0
 let Tlist_Use_Right_Window=1
 let Tlist_WinWidth=40
-nnoremap <silent> <f12> :TlistToggle<cr>
-nnoremap <silent> <f9> :wincmd p<cr>
+nnoremap <silent> <F10> :TlistToggle<cr>
+nnoremap <silent> <F9> :wincmd p<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("cscope")
-    set csprg=/usr/bin/cscope
-    set csto=1
-    set cst
-    set nocsverb
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    endif
-    set csverb
-endif
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  endif
+endfunction
+au BufEnter /* call LoadCscope()
 
 " [S] Find this C symbol
 "nmap cs :cs find s
