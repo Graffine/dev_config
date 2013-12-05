@@ -1,0 +1,26 @@
+#! /bin/sh
+
+if [ -z $1 ]; then
+language=python
+else
+language=$1
+fi
+
+language=python,JavaScript,PHP,HTML
+
+echo 'remove old tags file...'
+rm -f tags TAGS
+rm -f cscope.*
+
+find `pwd` -name "*.py" -o -name "*.php" -o -name "*.js" -o -name "*.js.bak" -o -name "*.htm" -o -name "*.html" > files
+
+echo 'Generate python tags file'
+ctags -L py_files --languages=$language --fields=iaS --extra=+q -f
+#      --totals=yes \
+#      --tag-relative=yes \
+
+cscope -Rbkq -i files
+rm files
+rm files
+echo 'generate completed...'
+
