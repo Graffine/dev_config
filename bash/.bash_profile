@@ -9,4 +9,7 @@ fi
 
 PATH=$PATH:$HOME/bin
 
+export CLICOLOR=1
+export LSCOLORS="exfxcxdxbxegedabagacad"
+
 export PATH
