@@ -153,6 +153,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
+Plugin 'cscope.vim'
+Plugin 'taglist.vim'
 " Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
