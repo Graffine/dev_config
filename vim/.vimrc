@@ -62,8 +62,8 @@ let Tlist_Inc_Winwidth=0
 let Tlist_Show_One_File=0
 let Tlist_Use_Right_Window=1
 let Tlist_WinWidth=40
-nnoremap <silent> <F10> :TlistToggle<cr>
-nnoremap <silent> <F9> :wincmd p<cr>
+nnoremap <silent> <F10> :TlistToggle<CR>
+nnoremap <silent> <F9> :wincmd p<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
@@ -118,6 +118,19 @@ filetype plugin on
 "let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERFTree tab setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeShowHidden=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERFTree tab setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <F4> :NERDTreeTabsToggle<CR>
+
+" Open NERDTree on console vim startup
+let g:nerdtree_tabs_open_on_console_startup=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
@@ -136,6 +149,8 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 " Git plugin not hosted on GitHub
