@@ -151,6 +151,7 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'ervandew/supertab'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 Plugin 'cscope.vim'
