@@ -144,6 +144,23 @@ let g:nerdtree_tabs_open_on_console_startup=1
 let g:ctrlp_map='<c-t>'
 let g:ctrlp_cmd='CtrlP'
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+"set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+"let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+"let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+
+let g:ctrlp_custom_ignore={
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-commentary setting
+" https://github.com/tpope/vim-commentary
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType python,shell set commentstring=#\ %s
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -164,10 +181,16 @@ Plugin 'gmarik/Vundle.vim'
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+
 Plugin 'jistr/vim-nerdtree-tabs'
+
 Plugin 'ervandew/supertab'
+
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+
 Plugin 'jiangmiao/auto-pairs'
+
 Plugin 'kien/ctrlp.vim'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
