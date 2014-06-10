@@ -162,6 +162,28 @@ let g:ctrlp_custom_ignore={
 autocmd FileType python,shell set commentstring=#\ %s
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-airline setting
+" https://github.com/bling/vim-airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
@@ -179,7 +201,8 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+
 Plugin 'ervandew/supertab'
 
 Plugin 'jiangmiao/auto-pairs'
@@ -190,10 +213,12 @@ Plugin 'kien/ctrlp.vim'
 
 Plugin 'terryma/vim-multiple-cursors'
 
+Plugin 'scrooloose/nerdtree'
+
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 
-Plugin 'scrooloose/nerdtree'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 Plugin 'cscope.vim'
