@@ -131,6 +131,13 @@ nnoremap <silent> <F4> :NERDTreeTabsToggle<CR>
 let g:nerdtree_tabs_open_on_console_startup=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto-pairs setting
+" https://github.com/jiangmiao/auto-pairs
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:AutoPairsFlyMode=1 "Default enabled"
+"let g:AutoPairsShortcutBackInsert='<M-b>'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
@@ -153,6 +160,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 Plugin 'cscope.vim'
