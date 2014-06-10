@@ -180,18 +180,20 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
+Plugin 'ervandew/supertab'
+
+Plugin 'jiangmiao/auto-pairs'
 
 Plugin 'jistr/vim-nerdtree-tabs'
 
-Plugin 'ervandew/supertab'
+Plugin 'kien/ctrlp.vim'
+
+Plugin 'terryma/vim-multiple-cursors'
 
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 
-Plugin 'jiangmiao/auto-pairs'
-
-Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 Plugin 'cscope.vim'
