@@ -138,6 +138,13 @@ let g:nerdtree_tabs_open_on_console_startup=1
 "let g:AutoPairsShortcutBackInsert='<M-b>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ctrlp setting
+" https://github.com/kien/ctrlp.vim 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map='<c-t>'
+let g:ctrlp_cmd='CtrlP'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
@@ -161,6 +168,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'kien/ctrlp.vim'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 Plugin 'cscope.vim'
