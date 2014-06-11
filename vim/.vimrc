@@ -225,6 +225,8 @@ Plugin 'junegunn/vim-easy-align'
 
 Plugin 'kien/ctrlp.vim'
 
+Plugin 'nathanaelkane/vim-indent-guides'
+
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'terryma/vim-multiple-cursors'
