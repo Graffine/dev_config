@@ -183,6 +183,8 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
+let g:airline_section_c = '%{getcwd()}/%t'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-easy-align setting
 " https://github.com/junegunn/vim-easy-align
