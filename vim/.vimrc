@@ -223,6 +223,8 @@ Plugin 'junegunn/vim-easy-align'
 
 Plugin 'kien/ctrlp.vim'
 
+Plugin 'mattn/emmet-vim'
+
 Plugin 'nathanaelkane/vim-indent-guides'
 
 Plugin 'scrooloose/nerdtree'
