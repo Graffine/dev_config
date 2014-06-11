@@ -184,6 +184,16 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-easy-align setting
+" https://github.com/junegunn/vim-easy-align
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+nmap <Leader>a <Plug>(EasyAlign)"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
@@ -205,15 +215,19 @@ Plugin 'bling/vim-airline'
 
 Plugin 'ervandew/supertab'
 
+Plugin 'godlygeek/tabular'
+
 Plugin 'jiangmiao/auto-pairs'
 
 Plugin 'jistr/vim-nerdtree-tabs'
 
+Plugin 'junegunn/vim-easy-align'
+
 Plugin 'kien/ctrlp.vim'
 
-Plugin 'terryma/vim-multiple-cursors'
-
 Plugin 'scrooloose/nerdtree'
+
+Plugin 'terryma/vim-multiple-cursors'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
