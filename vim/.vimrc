@@ -120,15 +120,11 @@ filetype plugin on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERFTree tab setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <F4> :NERDTreeTabsToggle<CR>
 let g:NERDTreeShowHidden=1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERFTree tab setting
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <F4> :NERDTreeTabsToggle<CR>
-
 " Open NERDTree on console vim startup
-let g:nerdtree_tabs_open_on_console_startup=1
+" let g:nerdtree_tabs_open_on_console_startup=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto-pairs setting
