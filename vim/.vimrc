@@ -4,6 +4,7 @@ set cindent
 set nu
 set showcmd
 set pastetoggle=<F6>
+noremap jj <Esc>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent settings
