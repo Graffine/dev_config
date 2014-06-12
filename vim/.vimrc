@@ -239,6 +239,7 @@ Plugin 'tpope/vim-commentary'
 "Plugin 'L9'
 Plugin 'cscope.vim'
 Plugin 'taglist.vim'
+Plugin 'VisIncr'
 " Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
