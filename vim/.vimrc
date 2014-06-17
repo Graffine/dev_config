@@ -4,7 +4,7 @@ set cindent
 set nu
 set showcmd
 set pastetoggle=<F6>
-noremap jj <Esc>
+inoremap jj <Esc>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent settings
@@ -22,9 +22,12 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
 " Clear spaces on the end of each line when save
-autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType c,cpp,python,ruby,java,javascript,html,css autocmd BufWritePre <buffer> :%s/\s\+$//e
 "autocmd FileType c,cpp,java,php,perl,python,ruby,sh autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'
 "au FileType c,cpp,h,java,php,perl,python,sh au FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","":q:))
+
+" Treat .ejs file as .html
+autocmd BufRead,BufNewFile *.ejs setfiletype html
 
 autocmd BufRead,BufNewFile *.py map <F5> :% w !python<CR>
 map <F7> :set nu!<BAR>set nu?<CR>
