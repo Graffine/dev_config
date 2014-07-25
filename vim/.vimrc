@@ -3,6 +3,7 @@ syntax enable
 set cindent
 set nu
 set showcmd
+set hlsearch
 set pastetoggle=<F6>
 inoremap jj <Esc>
 
