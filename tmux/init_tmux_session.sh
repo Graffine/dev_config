@@ -1,9 +1,8 @@
 #!/bin/bash
-tmux new-session -d -s HRS
+tmux new-session -d -s Develop
 
-tmux rename-window -t HRS:0 'Local'
-tmux new-window -t HRS:1 -n 'AWS-HRS-Server' 'ssh AWS-HRS-Server'
-tmux new-window -t HRS:2 -n 'AWS-HRS-RabbitMQ' 'ssh AWS-HRS-RabbitMQ'
+tmux rename-window -t Develop:0 'git-operation'
+tmux new-window -t Develop:1 -n 'dev'
 
-tmux select-window -t HRS:0
-tmux -2 attach-session -t HRS
+tmux select-window -t Develop:1
+tmux -2 attach-session -t Develop
