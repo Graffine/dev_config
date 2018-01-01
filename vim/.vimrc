@@ -6,6 +6,8 @@ set showcmd
 set hlsearch
 set pastetoggle=<F6>
 inoremap jj <Esc>
+let mapleader=','
+nnoremap <Leader>rs :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent settings
