@@ -5,6 +5,7 @@
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias doc='docker-compose'
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -35,4 +36,6 @@ function git_since_last_commit {
 #PS1="[\[\033[1;32m\]\w\[\033[0m\]] \[\033[0m\]\[\033[1;36m\]\$(git_branch)\[\033[0;33m\]\$(git_since_last_commit)\[\033[0m\]$ "
 
 PS1="[\u@\h \[\033[1;35m\]\w\[\033[0m\]] \[\033[0m\]\[\033[1;33m\]\$(git_branch)\[\033[0m\]# "
+
+export PATH=/usr/local//bin:$PATH
 
