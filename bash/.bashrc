@@ -36,21 +36,3 @@ function git_since_last_commit {
 
 PS1="[\u@\h \[\033[1;35m\]\w\[\033[0m\]] \[\033[0m\]\[\033[1;33m\]\$(git_branch)\[\033[0m\]# "
 
-export PATH=/opt/trendmicro/bin:$PATH
-
-
-# Graffine specific aliases
-alias v1='vim /opt/trendmicro/var/log/wfbsh_ap/logging\:1.log'
-alias v2='vim /opt/trendmicro/var/log/wfbsh_ap/logging\:2.log'
-alias r1='rm -f /opt/trendmicro/var/log/wfbsh_ap/logging\:1.log'
-alias r2='rm -f /opt/trendmicro/var/log/wfbsh_ap/logging\:2.log'
-alias vut='vim /opt/trendmicro/var/log/wfbsh_unittest/logging.log'
-
-alias llog='ls -l /opt/trendmicro/var/log/wfbsh_ap/'
-
-alias src='cd /root/projects/wfbs-svc/WFBS_Hosted/'
-alias dev='cd /usr/lib/python2.6/site-packages/wfbsh_ap/'
-
-# Cscope database
-CSCOPE_DB=/usr/lib/python2.6/site-packages/cscope.out
-export CSCOPE_DB
