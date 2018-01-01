@@ -5,6 +5,7 @@ set nu
 set showcmd
 set hlsearch
 set pastetoggle=<F6>
+set backspace=2
 inoremap jj <Esc>
 let mapleader=','
 nnoremap <Leader>rs :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
@@ -25,9 +26,7 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
 " Clear spaces on the end of each line when save
-autocmd FileType c,cpp,python,go,ruby,java,javascript,html,css autocmd BufWritePre <buffer> :%s/\s\+$//e
-"autocmd FileType c,cpp,java,php,perl,python,ruby,sh autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'
-"au FileType c,cpp,h,java,php,perl,python,sh au FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","":q:))
+autocmd FileType c,cpp,python,go,php,ruby,java,javascript,html,css autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Treat .ejs file as .html
 autocmd BufRead,BufNewFile *.ejs setfiletype html
@@ -56,7 +55,6 @@ highlight User6 ctermfg=white
 " Ctags setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tags=tags;
-set tags+=/usr/lib/python2.6/site-packages/tags
 set autochdir
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -333,6 +331,11 @@ let g:syntastic_check_on_wq = 0
 
 " let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 " let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+" let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_phpcs_disable = 1
+let g:syntastic_phpmd_disable = 1
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_quiet_messages = { "type": "style"  }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle setting
@@ -388,20 +391,12 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-Plugin 'cscope.vim'
+" Plugin 'cscope.vim'
 Plugin 'taglist.vim'
 Plugin 'VisIncr'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
+
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
