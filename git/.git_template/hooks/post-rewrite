@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+case "$1" in
+  rebase)
+    TMP_UPSTREAM_FILE=".git/rebase-upstream-commit"
+
+    UPSTREAM_COMMIT=$(cat $TMP_UPSTREAM_FILE)
+    UPSTREAM_COMMIT_SHA=$(git merge-base $UPSTREAM_COMMIT HEAD)
+    DIFF_FILES=$(git diff --name-only --diff-filter=ACMR $UPSTREAM_COMMIT_SHA HEAD)
+
+    rm -rf $TMP_UPSTREAM_FILE
+    exec .git/hooks/pre-commit $DIFF_FILES
+    ;;
+esac
+

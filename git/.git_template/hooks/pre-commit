@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+function xdebug_disable() {
+    if [ -f /etc/php7/conf.d/xdebug.ini ]; then
+        mv /etc/php7/conf.d/xdebug.ini /etc/php7/conf.d/xdebug.ini.bak
+    fi
+}
+
+function xdebug_enable() {
+    if [ -f /etc/php7/conf.d/xdebug.ini.bak ]; then
+        mv /etc/php7/conf.d/xdebug.ini.bak /etc/php7/conf.d/xdebug.ini
+    fi
+}
+
+function error_cleanup() {
+    xdebug_enable
+    exit 1
+}
+
+PROJECT=$(git rev-parse --show-toplevel)
+STAGED_FILES_CMD=$(git diff --cached --name-only --diff-filter=ACMR HEAD | grep \\.php)
+ 
+# Determine if a file list is passed
+if [ "$#" -ne 0 ]
+then
+    oIFS=$IFS
+    IFS='
+    '
+    STAGE_FILES=$(echo $@ | tr " " "\n" | grep \\.php)
+    IFS=$oIFS
+fi
+STAGE_FILES=${STAGE_FILES:-$STAGED_FILES_CMD}
+
+if [ "$STAGE_FILES" == "" ]
+then
+    echo "No modified php files. Skip it."
+    exit 0
+fi
+
+echo "Checking PHP Lint..."
+xdebug_disable
+php-cs-fixer fix --using-cache no --config .php_cs.dist $STAGE_FILES --dry-run
+PHP_CS_FIXER_ERROR=$?
+if [ $PHP_CS_FIXER_ERROR != 0 ]
+then
+    echo -e "\nKerkerker... Auto fix the error but you should check first."
+    php-cs-fixer fix --using-cache no --config .php_cs.dist $STAGE_FILES > /dev/null 2>&1
+    error_cleanup
+fi
+
+echo "Checking PHP Syntax..."
+for FILE in $STAGE_FILES
+do
+    php -l -d display_errors=0 $PROJECT/$FILE
+    PHP_SYNTAX_ERROR=$?
+    if [ $PHP_SYNTAX_ERROR != 0 ]
+    then
+        echo "Fix the error before commit."
+        error_cleanup
+    fi
+    FILES="$FILES $PROJECT/$FILE"
+done
+
+if [ "$FILES" != "" ]
+then
+    echo "Running Code Sniffer..."
+
+    # Ignore database related files from goddamn laravel dirty style
+    ESCAPE_FILES_REGEXP='.*database/.*/.*\.php'
+    TMP_DIR=/tmp/$(date +%s)
+    mkdir -p $TMP_DIR
+    for FILE in $STAGE_FILES
+    do
+        MATCH=$(echo $FILE | grep -Eo $ESCAPE_FILES_REGEXP)
+        if [ "$MATCH" == "" ]
+        then
+            mkdir -p $TMP_DIR/$(dirname $FILE)
+            git show :$FILE > $TMP_DIR/$FILE
+        fi
+    done
+    phpcs --standard=PSR2 --encoding=utf-8 -p $TMP_DIR
+    PHPCS_ERROR=$?
+    rm -rf $TMP_DIR
+    if [ $PHPCS_ERROR != 0 ]
+    then
+        echo "Fix the error before commit."
+        error_cleanup
+    fi
+
+    echo "Find Unit Test executable file..."
+    PHP_UNIT_EXEC=$(find $PROJECT -maxdepth 4 -size -1k -regex '.*/vendor/bin/phpunit$')
+    PHP_UNIT_XML=$(find $PROJECT -maxdepth 2 -name 'phpunit.xml')
+    if [ "$PHP_UNIT_EXEC" == "" ] || [ "$PHP_UNIT_XML" == "" ]
+    then
+        echo "Not found. Skip unit test."
+        exit 0;
+    fi
+
+    echo "Running Unit Test..."
+    $PHP_UNIT_EXEC --configuration $PHP_UNIT_XML
+    UNIT_TEST_ERROR=$?
+    if [ $UNIT_TEST_ERROR != 0 ]
+    then
+        echo "Fix unit test error before commit."
+        error_cleanup
+    fi
+fi
+ 
+exit $?
