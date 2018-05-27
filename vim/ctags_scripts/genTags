@@ -6,21 +6,25 @@ else
 language=$1
 fi
 
-language=python,JavaScript,PHP,HTML
+GIT_FOLDER=$(git rev-parse --git-dir)
+PROJECT_ROOT_FOLDER=$(git rev-parse --show-toplevel)
+TMP_FILES=$GIT_FOLDER/files
 
-echo 'remove old tags file...'
-rm -f tags TAGS
-rm -f cscope.*
+echo 'Remove old tags file...'
+rm -f $GIT_FOLDER/tags
+rm -f $GIT_FOLDER/cscope.*
 
-find `pwd` -name "*.py" -o -name "*.php" -o -name "*.js" -o -name "*.js.bak" -o -name "*.htm" -o -name "*.html" > files
+for file in $(git ls-files)
+do
+    echo $PROJECT_ROOT_FOLDER/$file >> $TMP_FILES
+done
 
-echo 'Generate python tags file'
-ctags -L py_files --languages=$language --fields=iaS --extra=+q -f
-#      --totals=yes \
-#      --tag-relative=yes \
+echo 'Generate tags file'
+ctags -L $TMP_FILES --fields=iaS --extra=+q -f "$GIT_FOLDER/$$.tags"
+mv $GIT_FOLDER/$$.tags $GIT_FOLDER/tags
 
-cscope -Rbkq -i files
-rm files
-rm files
-echo 'generate completed...'
+cscope -Rbkq -i $TMP_FILES
+mv cscope.* $GIT_FOLDER
+rm $TMP_FILES
+echo 'Generate completed...'
 
