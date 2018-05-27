@@ -73,13 +73,26 @@ nnoremap <silent> <F9> :wincmd p<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! LoadCscope()
-  let db = findfile("cscope.out", ".;")
   if (!empty(db))
     let path = strpart(db, 0, match(db, "/cscope.out$"))
     set nocscopeverbose " suppress 'duplicate connection' error
-    exe "cs add " . db . " " . path
+    exe "cs add " . a:cscopeDB . " " . path
     set cscopeverbose
+endfunction
+
+function! LoadCscope()
+  let cscopeDbFolder = system("git rev-parse --git-dir 2> /dev/null")[:-2]
+  let cscopeDB = findfile("cscope.out", cscopeDbFolder)
+
+  " find cscopedb in .git folder
+  if (!empty(cscopeDB))
+    call AddCscope(cscopeDB)
+  else
+      " find cscopedb in currenct folder
+    let cscopeDB = findfile("cscope.out", ".;")
+    if (!empty(cscopeDB))
+      call AddCscope(cscopeDB)
+    endif
   endif
 endfunction
 au BufEnter /* call LoadCscope()
