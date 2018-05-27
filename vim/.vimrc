@@ -73,8 +73,8 @@ nnoremap <silent> <F9> :wincmd p<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  if (!empty(db))
-    let path = strpart(db, 0, match(db, "/cscope.out$"))
+function! AddCscope(cscopeDB)
+    let path = strpart(a:cscopeDB, 0, match(a:cscopeDB, "/cscope.out$"))
     set nocscopeverbose " suppress 'duplicate connection' error
     exe "cs add " . a:cscopeDB . " " . path
     set cscopeverbose
@@ -333,22 +333,48 @@ au Syntax * RainbowParenthesesLoadBraces
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
-" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-" let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_phpcs_disable = 1
-let g:syntastic_phpmd_disable = 1
-let g:syntastic_php_checkers = ['php']
-let g:syntastic_quiet_messages = { "type": "style"  }
+" " let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" " let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+" " let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+" let g:syntastic_php_checkers = ['phpcs', 'phpmd']
+" let g:syntastic_php_phpcs_args = '--standard=PSR2'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = {
+\   'php': ['php', 'phpcs', 'php_cs_fixer'],
+\}
+
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   'php': ['php_cs_fixer'],
+\}
+let g:ale_php_phpcs_standard = 'PSR2'
+let g:ale_php_cs_fixer_options = '--config=' . system("git rev-parse --show-toplevel")[:-2] . '/.php_cs.dist'
+
+let g:ale_open_list = 1
+let g:ale_list_window_size = 5
+let g:ale_completion_enabled = 1
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:airline#extensions#ale#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle setting
@@ -396,13 +422,15 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'rking/ag.vim'
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 
 Plugin 'terryma/vim-multiple-cursors'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+
+Plugin 'w0rp/ale'
 
 " Plugin 'cscope.vim'
 Plugin 'taglist.vim'
